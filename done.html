@@ -310,7 +310,7 @@
       </div>
       <div class="info-text">
         <span class="info-label">Indirizzo verificato</span>
-        <span class="info-value">mario.rossi@esempio.it</span>
+        <span class="info-value" id="emailValue">—</span>
       </div>
     </div>
 
@@ -345,6 +345,10 @@
   </div>
 
   <script>
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email');
+    document.getElementById('emailValue').textContent = email || '—';
+
     const d = new Date();
     const opts = { day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' };
     document.getElementById('verifiedDate').textContent =
