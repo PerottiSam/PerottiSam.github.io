@@ -335,8 +335,27 @@
   </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const email = params.get('email');
+    // 1. Prova prima dal query param ?email= (fallback manuale)
+    const qParams = new URLSearchParams(window.location.search);
+    let email = qParams.get('email');
+
+    // 2. Se non c'è, leggi l'access_token dal fragment (#access_token=...&...)
+    //    Supabase lo mette nell'hash dopo il redirect di conferma
+    if (!email && window.location.hash) {
+      const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+      const accessToken = hashParams.get('access_token');
+
+      if (accessToken) {
+        try {
+          // Il JWT è in formato header.payload.signature — decodifica il payload
+          const payload = JSON.parse(atob(accessToken.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+          email = payload.email || null;
+        } catch (e) {
+          // token malformato, lascia email null
+        }
+      }
+    }
+
     document.getElementById('emailValue').textContent = email || '—';
 
     const d = new Date();
