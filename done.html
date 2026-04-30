@@ -335,11 +335,9 @@
   </div>
 
   <script>
-    // 1. Prova prima dal query param ?email= (fallback manuale)
-    const qParams = new URLSearchParams(window.location.search);
-    let email = qParams.get('email');
+    
 
-    // 2. Se non c'è, leggi l'access_token dal fragment (#access_token=...&...)
+    // Leggi l'access_token dal fragment (#access_token=...&...)
     //    Supabase lo mette nell'hash dopo il redirect di conferma
     if (!email && window.location.hash) {
       const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
