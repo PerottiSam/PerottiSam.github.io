@@ -1,1 +1,1995 @@
-ciao
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --red: #fc3c44;
+    --red-dim: rgba(252, 60, 68, 0.15);
+    --red-glow: rgba(252, 60, 68, 0.25);
+    --bg: #0a0a0b;
+    --bg2: #111114;
+    --bg3: #18181c;
+    --bg4: #1e1e24;
+    --text: #f0f0f2;
+    --text2: #9898a6;
+    --text3: #5a5a6a;
+    --border: rgba(255, 255, 255, 0.07);
+    --border2: rgba(255, 255, 255, 0.12);
+    --radius: 12px;
+    --radius-lg: 18px;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 11, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .nav-logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .nav-links a:hover {
+    color: var(--text);
+  }
+  .nav-cta {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover {
+    opacity: 0.85;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(
+      ellipse,
+      rgba(252, 60, 68, 0.12) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--red-dim);
+    border: 0.5px solid rgba(252, 60, 68, 0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  .hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+  h1.hero-title {
+    font-size: 62px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    max-width: 720px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title span {
+    color: var(--red);
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text2);
+    max-width: 520px;
+    line-height: 1.65;
+    margin-bottom: 2.5rem;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+  .btn-primary {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      opacity 0.2s,
+      transform 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      border-color 0.2s;
+  }
+  .btn-ghost:hover {
+    background: var(--bg3);
+    border-color: var(--border2);
+  }
+
+  /* MOCKUP PHONES */
+  .phones-wrap {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    margin-top: 1rem;
+  }
+  .phone {
+    width: 200px;
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+  }
+  .phone.center {
+    width: 230px;
+    transform: translateY(0);
+    z-index: 2;
+    border-color: rgba(252, 60, 68, 0.4);
+    box-shadow: 0 0 40px rgba(252, 60, 68, 0.15);
+  }
+  .phone.side {
+    transform: translateY(40px) rotate(3deg);
+    opacity: 0.7;
+  }
+  .phone.side.left {
+    transform: translateY(40px) rotate(-3deg);
+  }
+  .phone-notch {
+    width: 90px;
+    height: 24px;
+    background: #000;
+    border-radius: 0 0 16px 16px;
+    margin: 0 auto 12px;
+  }
+  .phone-screen {
+    padding: 8px 12px 16px;
+  }
+
+  /* PHONE SCREEN CONTENT - Games */
+  .ps-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .ps-search {
+    background: var(--bg3);
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 10px;
+    color: var(--text3);
+    margin-bottom: 10px;
+    border: 0.5px solid var(--border);
+  }
+  .ps-section {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .ps-games {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    margin-bottom: 12px;
+  }
+  .ps-game {
+    border-radius: 6px;
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: flex-end;
+    padding: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pg1 {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  }
+  .pg2 {
+    background: linear-gradient(135deg, #2d1b1b 0%, #4a1c2e 50%, #7b2d42 100%);
+  }
+  .pg3 {
+    background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 50%, #2563a4 100%);
+  }
+  .pg4 {
+    background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 50%, #3d3d3d 100%);
+  }
+  .pg5 {
+    background: linear-gradient(135deg, #1a0a2e 0%, #2d1450 50%, #4a2080 100%);
+  }
+  .pg6 {
+    background: linear-gradient(135deg, #0a1a0a 0%, #1a3a1a 50%, #2d5a2d 100%);
+  }
+  .ps-game-label {
+    font-size: 7px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1.2;
+  }
+  .ps-tabbar {
+    display: flex;
+    justify-content: space-around;
+    border-top: 0.5px solid var(--border);
+    padding: 8px 0 4px;
+    margin-top: 4px;
+  }
+  .ps-tab {
+    font-size: 8px;
+    color: var(--text3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .ps-tab.active {
+    color: var(--red);
+  }
+  .ps-tab-icon {
+    font-size: 12px;
+  }
+
+  /* PHONE SCREEN - Posts */
+  .ps-post {
+    background: var(--bg3);
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 6px;
+    border: 0.5px solid var(--border);
+  }
+  .ps-post-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .ps-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+  .av1 {
+    background: linear-gradient(135deg, #fc3c44, #a01c22);
+  }
+  .av2 {
+    background: linear-gradient(135deg, #6366f1, #4338ca);
+  }
+  .av3 {
+    background: linear-gradient(135deg, #10b981, #059669);
+  }
+  .ps-post-user {
+    font-size: 8px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .ps-post-game {
+    font-size: 7px;
+    color: var(--red);
+  }
+  .ps-post-text {
+    font-size: 8px;
+    color: var(--text2);
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+  .ps-post-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .ps-action {
+    font-size: 7px;
+    color: var(--text3);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .ps-action.liked {
+    color: var(--red);
+  }
+
+  /* PHONE SCREEN - Profile */
+  .ps-profile-top {
+    text-align: center;
+    padding-bottom: 8px;
+  }
+  .ps-profile-av {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fc3c44, #a01c22);
+    margin: 0 auto 5px;
+    border: 2px solid rgba(252, 60, 68, 0.4);
+  }
+  .ps-profile-name {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .ps-profile-handle {
+    font-size: 7px;
+    color: var(--text3);
+  }
+  .ps-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+    margin: 6px 0;
+  }
+  .ps-stat {
+    text-align: center;
+  }
+  .ps-stat-n {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .ps-stat-l {
+    font-size: 7px;
+    color: var(--text3);
+  }
+  .ps-lib {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .ps-lib-card {
+    background: var(--bg4);
+    border-radius: 5px;
+    padding: 5px;
+    border: 0.5px solid var(--border);
+  }
+  .ps-lib-label {
+    font-size: 7px;
+    color: var(--text3);
+  }
+  .ps-lib-val {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .ps-lib-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 3px;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--text2);
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  /* FEATURES GRID */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-top: 4rem;
+  }
+  .feature-card {
+    background: var(--bg2);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+  .feature-card:hover {
+    background: var(--bg3);
+  }
+  .feat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--red-dim);
+    border: 0.5px solid rgba(252, 60, 68, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 1rem;
+    color: var(--red);
+  }
+  .feat-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .feat-desc {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* SOCIAL SECTION */
+  .social-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  .post-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+  .post-card:hover {
+    border-color: rgba(252, 60, 68, 0.3);
+  }
+  .post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .post-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+  }
+  .post-user {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .post-game-tag {
+    font-size: 11px;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 1px;
+  }
+  .post-body {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+  .post-img {
+    width: 100%;
+    height: 100px;
+    background: var(--bg3);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--text3);
+    border: 0.5px solid var(--border);
+    overflow: hidden;
+  }
+  .post-img-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gi1 {
+    background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 40%, #1a1a2e 100%);
+  }
+  .post-actions {
+    display: flex;
+    gap: 14px;
+  }
+  .pa {
+    font-size: 12px;
+    color: var(--text3);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .pa:hover {
+    color: var(--text);
+  }
+  .pa.active {
+    color: var(--red);
+  }
+
+  /* LIBRARY SECTION */
+  .lib-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .lib-panel {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .lib-panel-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .lib-panel-title {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .lib-panel-count {
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .lib-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 1.25rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .lib-item:last-child {
+    border-bottom: none;
+  }
+  .lib-cover {
+    width: 36px;
+    height: 48px;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+  .lc1 {
+    background: linear-gradient(135deg, #1a1a2e, #0f3460);
+  }
+  .lc2 {
+    background: linear-gradient(135deg, #2d1b1b, #7b2d42);
+  }
+  .lc3 {
+    background: linear-gradient(135deg, #1c1c1c, #3d3d3d);
+  }
+  .lc4 {
+    background: linear-gradient(135deg, #0a1a0a, #2d5a2d);
+  }
+  .lib-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .lib-game-title {
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .lib-game-sub {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+  .lib-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .badge-playing {
+    background: rgba(252, 60, 68, 0.15);
+    color: var(--red);
+    border: 0.5px solid rgba(252, 60, 68, 0.25);
+  }
+  .badge-done {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 0.5px solid rgba(16, 185, 129, 0.2);
+  }
+  .badge-wish {
+    background: rgba(99, 102, 241, 0.1);
+    color: #818cf8;
+    border: 0.5px solid rgba(99, 102, 241, 0.2);
+  }
+  .lib-stars {
+    display: flex;
+    gap: 1px;
+  }
+  .star {
+    font-size: 11px;
+    color: #f59e0b;
+  }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 4rem 0;
+  }
+  .stat-box {
+    background: var(--bg2);
+    padding: 2rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--red);
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 4px;
+  }
+
+  /* COMMUNITY */
+  .community-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  .community-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition:
+      border-color 0.2s,
+      transform 0.2s;
+  }
+  .community-card:hover {
+    border-color: rgba(252, 60, 68, 0.3);
+    transform: translateY(-2px);
+  }
+  .cc-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .cc-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  .cc-online {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    border: 2px solid var(--bg2);
+  }
+  .cc-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .cc-handle {
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .cc-msg {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+    border-top: 0.5px solid var(--border);
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  .cc-game-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg3);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 10px;
+    color: var(--text2);
+    margin-top: 8px;
+    border: 0.5px solid var(--border);
+  }
+
+  /* WHY SECTION */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .why-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    display: flex;
+    gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .why-card:hover {
+    border-color: rgba(252, 60, 68, 0.2);
+  }
+  .why-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--red-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--red);
+    flex-shrink: 0;
+    border: 0.5px solid rgba(252, 60, 68, 0.2);
+  }
+  .why-content h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .why-content p {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* FINAL CTA */
+  .cta-section {
+    text-align: center;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 250px;
+    background: radial-gradient(
+      ellipse,
+      rgba(252, 60, 68, 0.1) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-section p {
+    font-size: 16px;
+    color: var(--text2);
+    margin-bottom: 2.5rem;
+  }
+  .cta-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: gap;
+  }
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .footer-links a {
+    font-size: 12px;
+    color: var(--text3);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover {
+    color: var(--text2);
+  }
+  .footer-copy {
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  /* SCREENSHOT SHOWCASE */
+  .showcase-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 3rem 0 1rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .sc-phone {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+  }
+  .sc-phone.feat {
+    border-color: rgba(252, 60, 68, 0.35);
+    box-shadow: 0 0 50px rgba(252, 60, 68, 0.12);
+  }
+
+  /* tag pill */
+  .tag {
+    display: inline-block;
+    background: var(--bg3);
+    border: 0.5px solid var(--border2);
+    border-radius: 6px;
+    font-size: 11px;
+    color: var(--text2);
+    padding: 3px 9px;
+    margin: 2px;
+  }
+
+  /* glow line separator */
+  .glow-sep {
+    width: 80px;
+    height: 2px;
+    background: var(--red);
+    border-radius: 1px;
+    margin: 1.5rem auto;
+    box-shadow: 0 0 12px var(--red-glow);
+  }
+
+  /* chat bubbles */
+  .chat-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .chat-msg {
+    max-width: 75%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .chat-msg.from {
+    background: var(--bg3);
+    color: var(--text2);
+    border: 0.5px solid var(--border);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+  .chat-msg.to {
+    background: var(--red);
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+  .chat-meta {
+    font-size: 10px;
+    color: var(--text3);
+    margin-bottom: 4px;
+  }
+</style>
+
+<div style="background: var(--bg); min-height: 100vh">
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-icon">
+        <image
+          style="height: 140%; width: auto"
+          src="./assets/images/splash-icon.png"
+          alt="Logo"
+        />
+      </div>
+      <span class="nav-logo-text">Respawn</span>
+    </div>
+    <div class="nav-links">
+      <a>Features</a>
+      <a>Community</a>
+      <a>Library</a>
+      <a>Download</a>
+    </div>
+    <button class="nav-cta">Download App</button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Now available on iOS & Android
+    </div>
+    <h1 class="hero-title">
+      Where Gamers<br /><span>Share, Track</span><br />& Respawn.
+    </h1>
+    <p class="hero-sub">
+      The social platform built for every kind of gamer. Share your moments,
+      track your library, and connect with a community that gets you.
+    </p>
+    <div class="hero-ctas">
+      <button class="btn-primary">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4" />
+          <path d="M16 16l2 2 4-4" />
+        </svg>
+        Download App
+      </button>
+      <button class="btn-ghost">Explore Features →</button>
+    </div>
+    <!-- THREE PHONES -->
+    <div class="phones-wrap">
+      <!-- Left phone - Posts feed -->
+      <div class="phone side left"></div>
+      <!-- Center phone - Games -->
+      <div class="phone center"></div>
+      <!-- Right phone - Profile -->
+      <div class="phone side"></div>
+    </div>
+  </div>
+
+  <!-- STATS ROW -->
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 2rem">
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-num">300K+</div>
+        <div class="stat-label">Games in database</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">70K+</div>
+        <div class="stat-label">Games Companies</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">App Store rating</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Built for gamers</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SOCIAL FEATURES -->
+  <section>
+    <div class="section-label">Social Features</div>
+    <div class="section-title">
+      Share your gaming<br />moments in real time.
+    </div>
+    <div class="social-layout">
+      <div>
+        <p class="section-sub" style="margin-bottom: 2rem">
+          Post photos, videos, and clips — always tagged to the game you're
+          playing. Build your story one session at a time.
+        </p>
+        <div class="post-card">
+          <div class="post-header">
+            <div
+              class="post-avatar av2"
+              style="
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #6366f1, #4338ca);
+              "
+            ></div>
+            <div>
+              <div class="post-user">yeciw18863</div>
+              <div class="post-game-tag">
+                <svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="6" width="20" height="12" rx="3" />
+                  <path d="M6 12h4M8 10v4M15 11h.01M18 13h.01" />
+                </svg>
+                Pragmata
+              </div>
+            </div>
+            <span
+              style="margin-left: auto; font-size: 11px; color: var(--text3)"
+              >6d ago</span
+            >
+          </div>
+          <div class="post-img gi1">
+            <div
+              style="
+                color: var(--text3);
+                font-size: 11px;
+                text-align: center;
+                padding: 1rem;
+              "
+            >
+              📸 Screenshot attached
+            </div>
+          </div>
+          <div class="post-actions">
+            <div class="pa active">❤ 24</div>
+            <div class="pa">💬 7</div>
+            <div class="pa">↗ Share</div>
+            <div class="pa" style="margin-left: auto">🔖</div>
+          </div>
+        </div>
+        <div class="post-card">
+          <div class="post-header">
+            <div
+              style="
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #fc3c44, #a01c22);
+                flex-shrink: 0;
+              "
+            ></div>
+            <div>
+              <div class="post-user">booklist.mailapp</div>
+              <div class="post-game-tag">
+                <svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="6" width="20" height="12" rx="3" />
+                  <path d="M6 12h4M8 10v4M15 11h.01M18 13h.01" />
+                </svg>
+                Cyberpunk 2077: Ultimate Edition
+              </div>
+            </div>
+            <span
+              style="margin-left: auto; font-size: 11px; color: var(--text3)"
+              >now</span
+            >
+          </div>
+          <p class="post-body">Bellissimo gioco, non smetto di giocarci 🎮🔥</p>
+          <div class="post-actions">
+            <div class="pa active">❤ 1</div>
+            <div class="pa">💬 0</div>
+            <div class="pa">↗ Share</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          style="
+            background: var(--bg2);
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+          "
+        >
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 600;
+              color: var(--text2);
+              margin-bottom: 1rem;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            "
+          >
+            Direct Messages
+          </div>
+          <div class="chat-wrap">
+            <div
+              style="font-size: 10px; color: var(--text3); margin-bottom: 2px"
+              class="chat-meta"
+            >
+              Respawn User · 13 mag
+            </div>
+            <div class="chat-msg to">Hey come va</div>
+            <div
+              class="chat-meta"
+              style="font-size: 10px; color: var(--text3); margin-top: 6px"
+            >
+              @kalikalilinux13
+            </div>
+            <div class="chat-msg from">Cissooooo</div>
+            <div class="chat-msg from">Cc</div>
+            <div
+              class="chat-msg from"
+              style="
+                background: var(--bg4);
+                padding: 10px;
+                border-radius: 10px;
+                max-width: 90%;
+              "
+            >
+              <div
+                style="
+                  font-size: 10px;
+                  font-weight: 600;
+                  color: var(--text);
+                  margin-bottom: 4px;
+                "
+              >
+                📬 booklist.mailapp
+              </div>
+              <div style="font-size: 11px; color: var(--text2)">Yolo</div>
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 12px;
+              background: var(--bg3);
+              border: 0.5px solid var(--border);
+              border-radius: 8px;
+              padding: 8px 12px;
+              font-size: 12px;
+              color: var(--text3);
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            Write a message...
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--text3)"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+          </div>
+        </div>
+        <div
+          style="
+            margin-top: 12px;
+            background: var(--red-dim);
+            border: 0.5px solid rgba(252, 60, 68, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+          "
+        >
+          <div
+            style="
+              font-size: 13px;
+              font-weight: 600;
+              color: var(--text);
+              margin-bottom: 6px;
+            "
+          >
+            🎮 Attach games to posts
+          </div>
+          <p style="font-size: 12px; color: var(--text2); line-height: 1.5">
+            Tag any game directly in your post. Followers can tap to see the
+            full game page, your rating, and who else is playing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- LIBRARY -->
+  <section>
+    <div class="section-label">Gaming Library</div>
+    <div class="section-title">
+      Your entire gaming life,<br />organized perfectly.
+    </div>
+    <div class="lib-layout">
+      <div>
+        <p class="section-sub" style="margin-bottom: 2rem">
+          Track every game you've ever played. Know exactly what's next. Leave
+          reviews that matter to your community.
+        </p>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 1rem;
+          "
+        >
+          <div
+            style="
+              background: var(--bg2);
+              border: 0.5px solid var(--border);
+              border-radius: 10px;
+              padding: 1rem;
+            "
+          >
+            <div style="font-size: 24px; font-weight: 800; color: var(--red)">
+              3
+            </div>
+            <div style="font-size: 12px; color: var(--text3)">Completati</div>
+          </div>
+          <div
+            style="
+              background: var(--bg2);
+              border: 0.5px solid var(--border);
+              border-radius: 10px;
+              padding: 1rem;
+            "
+          >
+            <div style="font-size: 24px; font-weight: 800; color: #f59e0b">
+              2
+            </div>
+            <div style="font-size: 12px; color: var(--text3)">In corso</div>
+          </div>
+          <div
+            style="
+              background: var(--bg2);
+              border: 0.5px solid var(--border);
+              border-radius: 10px;
+              padding: 1rem;
+            "
+          >
+            <div style="font-size: 24px; font-weight: 800; color: #818cf8">
+              5
+            </div>
+            <div style="font-size: 12px; color: var(--text3)">Wishlist</div>
+          </div>
+          <div
+            style="
+              background: var(--bg2);
+              border: 0.5px solid var(--border);
+              border-radius: 10px;
+              padding: 1rem;
+            "
+          >
+            <div style="font-size: 24px; font-weight: 800; color: #10b981">
+              1
+            </div>
+            <div style="font-size: 12px; color: var(--text3)">Reviews</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="lib-panel">
+          <div class="lib-panel-header">
+            <span class="lib-panel-title">My Library</span>
+            <span class="lib-panel-count">11 games</span>
+          </div>
+          <div class="lib-item">
+            <div class="lib-cover lc1"></div>
+            <div class="lib-info">
+              <div class="lib-game-title">Resident Evil Requiem</div>
+              <div class="lib-game-sub">Xbox Series X|S · Switch 2 · PC</div>
+            </div>
+            <span class="lib-badge badge-playing">In gioco</span>
+          </div>
+          <div class="lib-item">
+            <div class="lib-cover lc2"></div>
+            <div class="lib-info">
+              <div class="lib-game-title">Battlefield 6</div>
+              <div class="lib-game-sub">
+                <div class="lib-stars">
+                  <span class="star">★</span><span class="star">★</span
+                  ><span class="star">★</span><span class="star">★</span
+                  ><span class="star" style="color: var(--bg4)">★</span>
+                </div>
+              </div>
+            </div>
+            <span class="lib-badge badge-done">Completato</span>
+          </div>
+          <div class="lib-item">
+            <div class="lib-cover lc3"></div>
+            <div class="lib-info">
+              <div class="lib-game-title">GTA VI</div>
+              <div class="lib-game-sub">PS5 · Xbox Series X</div>
+            </div>
+            <span class="lib-badge badge-wish">Wishlist</span>
+          </div>
+          <div class="lib-item">
+            <div class="lib-cover lc4"></div>
+            <div class="lib-info">
+              <div class="lib-game-title">Neverness to Everness</div>
+              <div class="lib-game-sub">
+                <div class="lib-stars">
+                  <span class="star">★</span><span class="star">★</span
+                  ><span class="star">★</span><span class="star">★</span
+                  ><span class="star">★</span>
+                </div>
+              </div>
+            </div>
+            <span class="lib-badge badge-done">Completato</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FEATURES GRID -->
+  <section>
+    <div class="section-label">Everything You Need</div>
+    <div class="section-title">
+      One platform.<br />Infinite gameplay stories.
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feat-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+        </div>
+        <div class="feat-title">Social Feed</div>
+        <div class="feat-desc">
+          A gaming-native social feed. Follow players, discover new games, and
+          share your moments with the community.
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="6" width="20" height="12" rx="3" />
+            <path d="M6 12h4M8 10v4M15 11h.01M18 13h.01" />
+          </svg>
+        </div>
+        <div class="feat-title">Game Database</div>
+        <div class="feat-desc">
+          300,000+ games indexed and searchable. Find any title instantly and
+          explore what the community is saying about it.
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path
+              d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+            />
+          </svg>
+        </div>
+        <div class="feat-title">Personal Library</div>
+        <div class="feat-desc">
+          Track every game across completed, playing, and wishlist. Your full
+          gaming history, always at your fingertips.
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            />
+          </svg>
+        </div>
+        <div class="feat-title">Reviews & Ratings</div>
+        <div class="feat-desc">
+          Write honest reviews with a 1–10 scale. Build your reputation as a
+          trusted voice in the community.
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+        </div>
+        <div class="feat-title">Direct Chat</div>
+        <div class="feat-desc">
+          Real-time messaging with other gamers. Share screenshots, clips, and
+          game recommendations in a conversation.
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+        </div>
+        <div class="feat-title">Community Discovery</div>
+        <div class="feat-desc">
+          Find players who share your taste in games. Popular posts, trending
+          titles, and fresh reviews surface daily.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- COMMUNITY -->
+  <section>
+    <div class="section-label">Community</div>
+    <div class="section-title">Find your people<br />in every game.</div>
+    <p class="section-sub" style="margin-bottom: 3rem">
+      Connect with players who play what you play. Follow, message, comment, and
+      build real gaming friendships.
+    </p>
+    <div class="community-grid">
+      <div class="community-card">
+        <div class="cc-top">
+          <div
+            class="cc-avatar av1"
+            style="
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, #fc3c44, #a01c22);
+            "
+          ></div>
+          <div class="cc-online"></div>
+        </div>
+        <div class="cc-name">booklist.mailapp</div>
+        <div class="cc-handle">@booklist.mailapp</div>
+        <div class="cc-msg">
+          Just finished NTE and wow... the ending hit different. Anyone else
+          felt that?
+        </div>
+        <div class="cc-game-tag">🎮 Neverness to Everness</div>
+      </div>
+      <div class="community-card">
+        <div class="cc-top">
+          <div
+            class="cc-avatar av2"
+            style="
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, #6366f1, #4338ca);
+            "
+          ></div>
+          <div class="cc-online"></div>
+        </div>
+        <div class="cc-name">yeciw18863</div>
+        <div class="cc-handle">@yeciw18863</div>
+        <div class="cc-msg">
+          Directive 8020 is genuinely one of the best games this year. 8/10 no
+          doubt.
+        </div>
+        <div class="cc-game-tag">🎮 Directive 8020</div>
+      </div>
+      <div class="community-card">
+        <div class="cc-top">
+          <div
+            class="cc-avatar av3"
+            style="
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, #10b981, #059669);
+            "
+          ></div>
+          <div
+            style="
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              background: var(--text3);
+              border: 2px solid var(--bg2);
+            "
+          ></div>
+        </div>
+        <div class="cc-name">kalikalilinux13</div>
+        <div class="cc-handle">@kalikalilinux13</div>
+        <div class="cc-msg">
+          Forza Horizon 6 coming soon and I am NOT ready for how beautiful it's
+          going to look
+        </div>
+        <div class="cc-game-tag">🎮 Forza Horizon 6</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WHY RESPAWN -->
+  <section>
+    <div class="section-label">Why Respawn</div>
+    <div class="section-title">
+      Everything Letterboxd did<br />for film — for games.
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+        </div>
+        <div class="why-content">
+          <h3>Built exclusively for gamers</h3>
+          <p>
+            No noise from other hobbies. Respawn is 100% focused on the gaming
+            experience you deserve.
+          </p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path
+              d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+            />
+          </svg>
+        </div>
+        <div class="why-content">
+          <h3>Integrated game library</h3>
+          <p>
+            Track every game across every platform in one place. Your gaming
+            history, always complete and searchable.
+          </p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+        </div>
+        <div class="why-content">
+          <h3>Community-driven</h3>
+          <p>
+            Reviews, posts, and discussions shaped entirely by the people who
+            actually play the games. No paid placements.
+          </p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            />
+          </svg>
+        </div>
+        <div class="why-content">
+          <h3>Honest ratings that matter</h3>
+          <p>
+            A real 1–10 score from real gamers. See exactly how the community
+            rates any game before you pick it up.
+          </p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+        </div>
+        <div class="why-content">
+          <h3>Track your progress</h3>
+          <p>
+            See how many games you've played, completed, and have queued up.
+            Your gaming journey in numbers.
+          </p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+        </div>
+        <div class="why-content">
+          <h3>Multi-platform, one place</h3>
+          <p>
+            PlayStation, Xbox, PC, Nintendo — Respawn covers every platform.
+            Your whole library under one roof.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="cta-section">
+    <div class="cta-glow"></div>
+    <div
+      style="
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--red);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 1.25rem;
+      "
+    >
+      Join the community
+    </div>
+    <h2>
+      The next generation<br />of gaming
+      <span style="color: var(--red)">starts here.</span>
+    </h2>
+    <p>
+      Join thousands of gamers already sharing, tracking, and connecting on
+      Respawn.
+    </p>
+    <div class="cta-btns">
+      <button class="btn-primary" style="font-size: 16px; padding: 16px 32px">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4" />
+          <path d="M16 16l2 2 4-4" />
+        </svg>
+        Download Now
+      </button>
+      <button class="btn-ghost" style="font-size: 16px; padding: 16px 32px">
+        Get Started Free →
+      </button>
+    </div>
+    <div
+      style="
+        margin-top: 2.5rem;
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      "
+    >
+      <span
+        style="
+          font-size: 13px;
+          color: var(--text3);
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        "
+        ><span style="color: var(--red)">✓</span> Free to download</span
+      >
+      <span
+        style="
+          font-size: 13px;
+          color: var(--text3);
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        "
+        ><span style="color: var(--red)">✓</span> iOS & Android</span
+      >
+
+      <span
+        style="
+          font-size: 13px;
+          color: var(--text3);
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        "
+        ><span style="color: var(--red)">✓</span> Community-first</span
+      >
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <div
+        style="
+          width: 28px;
+          height: 28px;
+          background: var(--bg);
+          border-radius: 7px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <img
+          src="./assets/images/splash-icon.png"
+          alt="Respawn Logo"
+          style="height: 140%; width: auto"
+        />
+      </div>
+      <span style="font-size: 15px; font-weight: 700; color: var(--text)"
+        >Respawn</span
+      >
+      <span class="footer-copy" style="margin-left: 12px">© 2026</span>
+    </div>
+    <div class="footer-links">
+      <a>Privacy</a>
+      <a>Terms</a>
+      <a>Contact</a>
+      <a>Twitter / X</a>
+      <a>Instagram</a>
+    </div>
+  </footer>
+</div>
