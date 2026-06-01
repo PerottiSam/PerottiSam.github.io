@@ -1087,12 +1087,14 @@
         <span class="nav-logo-text">Respawn</span>
       </div>
       <div class="nav-links">
-        <a>Features</a>
-        <a>Community</a>
-        <a>Library</a>
-        <a>Download</a>
+        <a href="#features">Features</a>
+        <a href="#community">Community</a>
+        <a href="#library">Library</a>
+        <a href="#cta-section-bottom">Download</a>
       </div>
-      <button class="nav-cta">Download App</button>
+      <a href="#cta-section-bottom"
+        ><button class="nav-cta">Download App</button></a
+      >
     </nav>
 
     <!-- HERO -->
@@ -1105,10 +1107,7 @@
         track your library, and connect with a community that gets you.
       </p>
       <div class="hero-ctas">
-        <a
-          href="https://apps.apple.com/us/app/id6770969671"
-          
-        >
+        <a href="https://apps.apple.com/us/app/id6770969671">
           <image
             style="height: 3rem"
             src="./assets/imgs/app_store.svg"
@@ -1118,7 +1117,6 @@
 
         <a
           href="https://play.google.com/store/apps/details?id=tigrecorp.sam.respawn"
-          
         >
           <image
             style="height: 3rem"
@@ -1387,7 +1385,7 @@
     <div class="divider"></div>
 
     <!-- LIBRARY -->
-    <section>
+    <section id="library">
       <div class="section-label">Gaming Library</div>
       <div class="section-title">
         Your entire gaming life,<br />organized perfectly.
@@ -1507,7 +1505,7 @@
     <div class="divider"></div>
 
     <!-- FEATURES GRID -->
-    <section>
+    <section id="features">
       <div class="section-label">Everything You Need</div>
       <div class="section-title">
         One platform.<br />Infinite gameplay stories.
@@ -1656,7 +1654,7 @@
     <div class="divider"></div>
 
     <!-- COMMUNITY -->
-    <section>
+    <section id="community">
       <div class="section-label">Community</div>
       <div class="section-title">Find your people<br />in every game.</div>
       <p class="section-sub" style="margin-bottom: 2.5rem">
@@ -1917,7 +1915,7 @@
     </section>
 
     <!-- FINAL CTA -->
-    <div class="cta-section">
+    <div id="cta-section-bottom" class="cta-section">
       <div class="cta-glow"></div>
       <div
         style="
@@ -1940,27 +1938,25 @@
         Respawn.
       </p>
       <div class="cta-btns">
-        <button class="btn-primary" style="font-size: 15px; padding: 14px 28px">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M12 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4"
+        <div class="hero-ctas">
+          <a href="https://apps.apple.com/us/app/id6770969671">
+            <image
+              style="height: 3rem"
+              src="./assets/imgs/app_store.svg"
+              alt="Logo"
             />
-            <path d="M16 16l2 2 4-4" />
-          </svg>
-          Download Now
-        </button>
-        <button class="btn-ghost" style="font-size: 15px; padding: 14px 28px">
-          Get Started Free →
-        </button>
+          </a>
+
+          <a
+            href="https://play.google.com/store/apps/details?id=tigrecorp.sam.respawn"
+          >
+            <image
+              style="height: 3rem"
+              src="./assets/imgs/google_play.svg"
+              alt="Logo"
+            />
+          </a>
+        </div>
       </div>
       <div class="cta-checks">
         <span class="cta-check"
@@ -2002,10 +1998,19 @@
         <span class="footer-copy" style="margin-left: 10px">© 2026</span>
       </div>
       <div class="footer-links">
-        <a>Privacy</a>
-        <a>Terms</a>
+        <a
+          href="https://www.rspwn.site/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Privacy</a
+        >
+        <a
+          href="https://www.rspwn.site/terms"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Terms</a
+        >
         <a>Contact</a>
-        <a>Twitter / X</a>
         <a>Instagram</a>
       </div>
     </footer>
