@@ -224,15 +224,24 @@
         transform: translateY(40px) rotate(-3deg);
       }
 
-      /* hide side phones on very small screens */
-      @media (max-width: 360px) {
-        .phone.side {
-          display: none;
-        }
-        .phone.center {
-          width: 85vw;
-        }
-      }
+      /* mobile: stack phones vertically */
+@media (max-width: 600px) {
+  .phones-wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .phone.center {
+    width: 80vw;
+    max-width: 300px;
+  }
+  .phone.side {
+    width: 80vw;
+    max-width: 300px;
+    transform: none !important;
+    opacity: 1;
+  }
+}
 
       .phone-notch {
         width: 80px;
